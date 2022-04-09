@@ -113,12 +113,24 @@ public class TicTacToeGameRunner {
 
   private void printGameOver() {
     if (game.hasWin(Player.X)) {
-      ((PrintStream) printStream).println("Player X won.");
+      printWinX();
     } else if (game.hasWin(Player.O)) {
-      printStream.println("Player O won.");
+      printWinO();
     } else {
-      printStream.println("Game ended in a draw.");
+      printDraw();
     }
+  }
+
+  private void printDraw() {
+	  printStream.println("Game ended in a draw.");
+  }
+
+  private void printWinO() {
+	  printStream.println("Player O won.");
+  }
+
+  private void printWinX() {
+	  ((PrintStream) printStream).println("Player X won.");
   }
 
   private void printInstructions() {
