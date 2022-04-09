@@ -4,3 +4,4 @@ sourcepath=./src/main/java
 cg.enumerate_random=true
 listener=listener.WinLossCounter
 native_classpath=./target/classes
+vm.tree_output=false
