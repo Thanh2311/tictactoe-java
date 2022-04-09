@@ -1,6 +1,7 @@
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.timtsu</groupId>
 	<artifactId>tictactoe</artifactId>
@@ -24,6 +25,13 @@
 			<version>1.4</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.sample</groupId>
+			<artifactId>sample</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${env.JPF_HOME}/build/jpf.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -32,8 +40,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
