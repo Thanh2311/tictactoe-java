@@ -3,6 +3,9 @@ package ttsu.game.tictactoe;
 import java.io.PrintStream;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import ttsu.game.tictactoe.Pair;
 
 import ttsu.game.Position;
 import ttsu.game.ai.GameIntelligenceAgent;
@@ -29,6 +32,7 @@ public class TicTacToeGameRunner {
   private Scanner scanner;
   private PrintStream printStream;
 
+  private List<Pair> availSpaces;
   /**
    * Creates a new game runner.
    * 
@@ -43,17 +47,26 @@ public class TicTacToeGameRunner {
     this.agent = agent;
     this.scanner = scanner;
     this.printStream = printStream;
+
+    this.availSpaces = new ArrayList<Pair>();
+    for (int i = 0 ; i < 3; i++)
+    {
+    	for (int j = 0; j < 3; j++)
+    	{
+		this.availSpaces.add(new Pair(i,j));
+    	}
+    }
   }
 
   /**
    * Runs the TicTacToe game, alternating between human and computer moves until the game is over.
    */
   public void run() {
-    printInstructions();
+    //printInstructions();
     while (!game.isOver()) {
       moveHuman();
       moveComputer();
-      boardPrinter.printGameBoard(game.getGameBoard());
+      //boardPrinter.printGameBoard(game.getGameBoard());
     }
     printGameOver();
   }
@@ -79,18 +92,24 @@ public class TicTacToeGameRunner {
 
   void moveHuman() {
     Position userPosition;
-    Random rng = new Random(); 
+    Random rng = new Random();
+    int idx; 
     while (true) {
       do {
-        printStream.print("Player X [row,col]: ");
-//        original code used scanner input for the players next move.
-//        Here, we replace with 2 random ints between [0,2], with a blank println
-//        to adjust for the formatting difference
+  //      printStream.print("Player X [row,col]: ");
+  //      original code used scanner input for the players next move.
+  //      Here, we replace with 2 random ints between [0,2], with a blank println
+  //      to adjust for the formatting difference
         
-//        String input = scanner.nextLine();
-        System.out.println("");
-        String input = String.format("%s,%s", rng.nextInt(3), rng.nextInt(3)) ;
-        userPosition = parseUserInput(input);
+  //      String input = scanner.nextLine();
+  	idx = rng.nextInt(this.availSpaces.size());
+	
+	// get avail coord
+	Pair pair = this.availSpaces.get(idx);
+	// remove it from list so it is not tried again
+	this.availSpaces.remove(idx);
+        String input = String.format("%s,%s", pair.getKey(), pair.getValue()) ;
+	userPosition = parseUserInput(input);
        
       } while (userPosition == null);
 
@@ -99,14 +118,14 @@ public class TicTacToeGameRunner {
           game.switchPlayer();
           return;
         } else {
-          printStream.printf("(%d,%d) has already been taken. ", userPosition.getRow(),
-              userPosition.getCol());
-          printInstructions();
+  //        printStream.printf("(%d,%d) has already been taken. ", userPosition.getRow(),
+  //        userPosition.getCol());
+  //        printInstructions();
         }
       } catch (IllegalArgumentException e) {
-        printStream.printf("(%d,%d) is not on the board. ", userPosition.getRow(),
-            userPosition.getCol());
-        printInstructions();
+  //        printStream.printf("(%d,%d) is not on the board. ", userPosition.getRow(),
+  //        userPosition.getCol());
+  //        printInstructions();
       }
     }
   }
