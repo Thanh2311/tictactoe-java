@@ -30,7 +30,7 @@
 			<artifactId>sample</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>${env.JPF_HOME}/build/jpf.jar</systemPath>
+			<systemPath>/eecs/home/brianmw1/jpf-core/build/jpf.jar</systemPath>
 		</dependency>
 	</dependencies>
 	<build>
