@@ -8,7 +8,7 @@ Then run the following maven command in a terminal in the root directory. You ca
 
     mvn package -DskipTests
 
-Some members had problems building due to the Path in the pom.xml, so please correct line 33 of the pom.xml with the location of your jpf installation.
+Some members had problems building due to the Path in the pom.xml, so please correct line 33 of the pom.xml with the location of your jpf installation. Specifically, it required the members to provide an absolute path instead of a relative path.
 
 ## Running JPF
 There are serveral application properties files in the the project.
@@ -26,6 +26,9 @@ Then change to the model-checking directory and run
 * replacing user inputs with random inputs, automating the entire game.
 * removed all output except the winner 
 * requires Java 8 
+* Added a listener to count wins, losses, and draws
+* Added a listener to help fix cycles in the tic tac toe game
+* Added a listener to determine the average move attempts per game.
 
 
 
